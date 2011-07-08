@@ -1,9 +1,11 @@
 /*******************************************************
 c-qwncr JavaScript Sequencing Framework
-v. 0.2
+v. 0.2.1
 MIT License.
 
  - Jeremy Kahn    jkahn@vsapartners.com
+
+Documentation can be found at: https://github.com/vsa-partners/c-qwncr/blob/master/README.md
 
 Dependencies: none
 *******************************************************/
@@ -134,12 +136,8 @@ Dependencies: none
 		 * @param {String} sequenceName The name of the sequence.  This must correspond to the `sequenceName` provided to `cq.start()`.
 		 */
 		end: function end (sequenceName) {
-			if (!_lock.lockExists(sequenceName)) {
-				throw 'Error:  Calling cq.end() on ' + sequenceName + ', which does not exist.';
-			}
-			
 			_lock.unlock(sequenceName);
-			_lock.destroyLock(sequenceName);
+			return _lock.destroyLock(sequenceName);
 		},
 		
 		/**
